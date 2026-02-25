@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الأستاذ للغة الإنجليزية</title>
+    <style>
+        :root { --primary: #1e3c72; --secondary: #2a5298; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
+        .header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .header h1 { margin: 0; font-size: 28px; }
+        .header p { margin: 10px 0 0; opacity: 0.9; }
+        .search-area { padding: 20px; max-width: 600px; margin: -30px auto 20px; }
+        #searchBar { width: 100%; padding: 15px 25px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.1); font-size: 16px; outline: none; box-sizing: border-box; }
+        .container { padding: 10px; max-width: 800px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+        .card { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; text-decoration: none; color: inherit; display: block; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .icon { font-size: 45px; display: block; margin-bottom: 10px; }
+        .file-name { font-weight: bold; font-size: 15px; line-height: 1.4; display: block; height: 42px; overflow: hidden; }
+        .badge { display: inline-block; margin-top: 10px; padding: 4px 12px; background: #e8f0fe; color: var(--primary); border-radius: 20px; font-size: 11px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>منصة الأستاذ التعليمية</h1>
+    <p>بوابتك للتفوق في اللغة الإنجليزية</p>
+</div>
+
+<div class="search-area">
+    <input type="text" id="searchBar" placeholder="ابحث عن ملزمة أو درس..." onkeyup="search()">
+</div>
+
+<div class="container">
+    <div class="grid" id="mainGrid">
+        </div>
+</div>
+
+<script>
+    // --- هنا تضع روابطك مستقبلاً ---
+    const myLibrary = [
+        { name: "ملزمة القواعد - الوحدة 1", type: "PDF", link: "#", icon: "📚" },
+        { name: "شرح زمن الماضي المستمر", type: "فيديو", link: "#", icon: "🎬" },
+        { name: "اختبار تجريبي شامل", type: "اختبار", link: "#", icon: "📝" },
+        { name: "كلمات المنهج كاملة", type: "PDF", link: "#", icon: "📖" }
+    ];
+
+    function display(data) {
+        const grid = document.getElementById('mainGrid');
+        grid.innerHTML = data.map(item => `
+            <a href="${item.link}" class="card" target="_blank">
+                <span class="icon">${item.icon}</span>
+                <span class="file-name">${item.name}</span>
+                <span class="badge">${item.type}</span>
+            </a>
+        `).join('');
+    }
+
+    function search() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const filtered = myLibrary.filter(item => item.name.toLowerCase().includes(query));
+        display(filtered);
+    }
+
+    display(myLibrary);
+</script>
+
+</body>
+</html>
